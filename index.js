@@ -6,20 +6,23 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import userController from './src/controllers/user.controller.js';
 import connectDB from './app.js';
+import user_route from './src/routes/user.route.js';
 
 const app = express();
 //IMPORTACION DE RUTAS
 
 
 //MIDDLEWARES
-app.use(bodyParser.urlencoded({ extended: false}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false}))
+app.use(express.json())
 
 //CABECERAS
 app.use(cors());
 
 
 connectDB();
+
+app.use('/api',user_route);
 
 //Exportar
 app.listen(process.env.PORT || 3000, () => {
