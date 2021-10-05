@@ -7,6 +7,8 @@ import md_autentication from '../middlewares/authenticated.js'
 var api = express.Router();
 
 api.post('/addPoll', md_autentication.ensureAuth ,pollController.addPoll);
-api.get('/getPollsUser', md_autentication.ensureAuth, pollController.getPollsUser)
+api.get('/getPollsUser', md_autentication.ensureAuth, pollController.getPollsUser);
+api.get('/getPollById/:idPoll', pollController.getPollById);
 
+api.delete('/deletePollById/:idPoll', md_autentication.ensureAuth, pollController.deletePollById);
 export default api;

@@ -27,6 +27,22 @@ export default class PollController{
         }
     }
     
+    static async getPollById(req, res){
+        try {
+            const serchPollById = await Poll.findById(req.params.idPoll);
+            return res.status(200).send(serchPollById);
+        } catch (error) {
+            return res.status(500).send({message: error});
+        }
+    }
 
+    static async deletePollById(req, res){
+        try {
+            const deletePoll = await Poll.findByIdAndDelete(req.params.idPoll);
+            return res.status(200).send(deletePoll);
+        } catch (error) {
+            return res.status(500).send({message: error});
+        }
+    }
     
 }
