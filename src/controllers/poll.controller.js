@@ -36,6 +36,16 @@ export default class PollController{
         }
     }
 
+    static async editPollById(req, res){
+        try {
+            const params = req.body;
+            const editPoll = await Poll.findByIdAndUpdate(req.params.idPoll, params, {new: true, useFindAndModify: false})
+            return res.status(200).send({editPoll});
+        } catch (error) {
+            return res.status(500).send({message: error});
+        }
+    }
+
     static async deletePollById(req, res){
         try {
             const deletePoll = await Poll.findByIdAndDelete(req.params.idPoll);
